@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "62009420878",
+    "project_id": "bannerex",
+    "storage_bucket": "bannerex.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62009420878:android:0edb3220161e9a8068671f",
+        "android_client_info": {
+          "package_name": "com.bannerx.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAkrl3qvXb-r-Vk8zRYYlvf9tQVHB94YI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
