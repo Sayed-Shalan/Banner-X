@@ -43,6 +43,12 @@ class MainController extends BaseController<MainRepository>
     _progressTimer?.cancel();
 
     final currentBanner = banners[currentIndex.value];
+    // If current banner is a video, we do not start a timer.
+    if (currentBanner.isVideo) {
+      timerProgress.value = 0.0;
+      return;
+    }
+
     final durationSeconds = currentBanner.duration ?? 3;
     final duration = Duration(seconds: durationSeconds);
 
@@ -103,10 +109,18 @@ class MainController extends BaseController<MainRepository>
     var resource = await repository.fetchBanners();
     if(resource.isSuccess()){
       banners.assignAll(resource.data);
+             debugPrint("IS VIDEO -----------::: ${banners.first.isVideo}");
+       debugPrint("VIDEO PATH -----------::: ${banners.first.videoPath}");
+       debugPrint("BANNER TYPE -----------::: ${banners.first.type}");
       if (banners.isNotEmpty) {
         _startAutoTransition();
       }
     }
     loading.value = false;
+  }
+
+  /// Exposed method for video completion **************************************
+  void goToNextBanner() {
+    _goToNextBanner();
   }
 }

@@ -2,6 +2,7 @@ import 'package:bannerx/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:bannerx/widgets/video_banner.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../../base/base_view.dart';
 import '../../models/api/page_properties.dart';
@@ -76,6 +77,7 @@ class MainScreen extends BaseView<MainController> {
         PageView.builder(
           controller: controller.pageController,
           onPageChanged: controller.onPageChanged,
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: controller.banners.length,
           itemBuilder: (context, index) {
             final banner = controller.banners[index];
@@ -89,6 +91,13 @@ class MainScreen extends BaseView<MainController> {
   }
 
   Widget _buildBannerItem(banner_model.Banner banner) {
+    if (banner.isVideo && (banner.videoPath ?? '').isNotEmpty) {
+      return VideoBanner(
+        manifestPath: banner.videoPath!,
+        onFinished: controller.goToNextBanner,
+      );
+    }
+
     return SizedBox(
       width: Get.width,
       height: Get.height,
