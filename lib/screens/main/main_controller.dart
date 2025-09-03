@@ -109,9 +109,6 @@ class MainController extends BaseController<MainRepository>
     var resource = await repository.fetchBanners();
     if(resource.isSuccess()){
       banners.assignAll(resource.data);
-             debugPrint("IS VIDEO -----------::: ${banners.first.isVideo}");
-       debugPrint("VIDEO PATH -----------::: ${banners.first.videoPath}");
-       debugPrint("BANNER TYPE -----------::: ${banners.first.type}");
       if (banners.isNotEmpty) {
         _startAutoTransition();
       }
